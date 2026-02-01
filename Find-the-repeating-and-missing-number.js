@@ -18,3 +18,29 @@ class Solution {
 
     }
 }
+
+
+//2965. Find Missing and Repeated Values
+/**
+ * @param {number[][]} grid
+ * @return {number[]}
+ */
+var findMissingAndRepeatedValues = function(grid) {
+    let N=grid.length
+    let n=N*N
+    let s1=0
+    let s2=0
+    let s1n= n*(n+1)/2
+    let s2n= n*(n+1)*(2*n+1)/6 
+    for (let i=0;i<N;i++){
+        for (let j=0;j<N;j++){
+            s1+=grid[i][j]
+            s2+=grid[i][j]*grid[i][j]
+        }
+    }  
+    let val1=s1-s1n
+    let val2=(s2-s2n)/val1 
+    let x=Math.floor((val1+val2)/2)
+    let y=Math.floor(x-val1)
+    return [x,y]
+};
